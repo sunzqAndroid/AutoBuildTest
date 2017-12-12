@@ -10,16 +10,41 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        debug {
+            keyAlias 'OffcnExamAlias'
+            keyPassword 'OffcnExam2017111'
+            storeFile file('offcnexam_keystore.jks')
+            storePassword 'OffcnEducation2017101'
+        }
+        release {
+            keyAlias 'OffcnExamAlias'
+            keyPassword 'OffcnExam2017111'
+            storeFile file('offcnexam_keystore.jks')
+            storePassword 'OffcnEducation2017101'
+        }
+    }
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+        disable "ResourceType"
+        abortOnError false
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
