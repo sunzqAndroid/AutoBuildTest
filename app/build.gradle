@@ -70,7 +70,7 @@ android {
             //是否为Jenkins打包，输出路径不同
             if ("true".equals(IS_JENKINS)) {
                 //AutoBuildTest-v1.0.1-xiaomi-release.apk
-                newName = 'AutoBuildTest-v' + APP_VERSION + '-' + variant.productFlavors[0].name + '-' + variant.buildType.name + '.apk'
+                newName = 'AutoBuildTest_v' + APP_VERSION + '_' + variant.productFlavors[0].name + '_' + variant.buildType.name + '.apk'
             } else {
                 if ('debug'.equals(variant.buildType.name)) {
                     newName = "AutoBuildTest_v${APP_VERSION}_debug.apk"
@@ -80,7 +80,7 @@ android {
                 }
             }
             //gradle3.0.0不支持outputFile文件的修改
-            output.outputFile = new File(outDirectory + '/' + timeNow, newName)
+            output.outputFile = new File(outDirectory, newName)
         }
     }
 }
